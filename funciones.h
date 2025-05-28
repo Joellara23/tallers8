@@ -3,14 +3,14 @@
 
 int leerEnteroPositivo(const char *mensaje);
 
-void ingresar(char nombres[][20], int tiempos[], int recursos[], int cantidades[], int *total, int MAX);
+void ingresar(char nombres[][20], int tiempos[], int recursos[][3], int cantidades[], int *total, int MAX);
 
-void mostrar(char nombres[][20], int tiempos[], int recursos[], int cantidades[], int total);
+void mostrar(char nombres[][20], int tiempos[], int recursos[][3], int cantidades[], int total);
 
-void editar(char nombres[][20], int tiempos[], int recursos[], int cantidades[], int total);
+void editar(char nombres[][20], int tiempos[], int recursos[][3], int cantidades[], int total);
 
-void eliminar(char nombres[][20], int tiempos[], int recursos[], int cantidades[], int *total);
+void eliminar(char nombres[][20], int tiempos[], int recursos[][3], int cantidades[], int *total);
 
-void calcular(char nombres[][20], int tiempos[], int recursos[], int cantidades[], int total);
+void calcular(char nombres[][20], int tiempos[], int recursos[][3], int cantidades[], int total);
 
 #endif
