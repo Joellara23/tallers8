@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
+// Variables globales para tiempo y recursos disponibles
+int tiempo_max;
+int recursos_max[3];
+
 #include "funciones.h"
 
 int leerEnteroPositivo(const char *mensaje) {
@@ -14,6 +18,13 @@ int leerEnteroPositivo(const char *mensaje) {
     } while (valor < 0);
     while (getchar() != '\n'); // Limpiar buffer
     return valor;
+}
+
+void inicializarRecursos() {
+    tiempo_max = leerEnteroPositivo("Tiempo disponible (min): ");
+    recursos_max[0] = leerEnteroPositivo("Chips disponibles: ");
+    recursos_max[1] = leerEnteroPositivo("Placas disponibles: ");
+    recursos_max[2] = leerEnteroPositivo("Cables disponibles: ");
 }
 
 void ingresar(char nombres[][20], int tiempos[], int recursos[][3], int cantidades[], int *total, int MAX) {
@@ -112,12 +123,6 @@ void calcular(char nombres[][20], int tiempos[], int recursos[][3], int cantidad
         }
     }
 
-    int tiempo_max, recursos_max[3];
-    tiempo_max = leerEnteroPositivo("Tiempo disponible (min): ");
-    recursos_max[0] = leerEnteroPositivo("Chips disponibles: ");
-    recursos_max[1] = leerEnteroPositivo("Placas disponibles: ");
-    recursos_max[2] = leerEnteroPositivo("Cables disponibles: ");
-
     printf("Tiempo total requerido: %d min\n", tiempo_total);
     printf("Chips totales requeridos: %d\n", recursos_total[0]);
     printf("Placas totales requeridas: %d\n", recursos_total[1]);
@@ -128,10 +133,18 @@ void calcular(char nombres[][20], int tiempos[], int recursos[][3], int cantidad
         recursos_total[1] <= recursos_max[1] &&
         recursos_total[2] <= recursos_max[2]) {
         printf("Si se puede cumplir con la produccion.\n");
+        // Calcular recursos restantes
+        tiempo_max -= tiempo_total;
+        recursos_max[0] -= recursos_total[0];
+        recursos_max[1] -= recursos_total[1];
+        recursos_max[2] -= recursos_total[2];
+        printf("Recursos restantes:\n");
+        printf("Tiempo disponible: %d min\n", tiempo_max);
+        printf("Chips disponibles: %d\n", recursos_max[0]);
+        printf("Placas disponibles: %d\n", recursos_max[1]);
+        printf("Cables disponibles: %d\n", recursos_max[2]);
     } else {
         printf("No se puede cumplir con la produccion.\n");
     }
 }
-
-
 
