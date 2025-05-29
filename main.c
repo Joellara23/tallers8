@@ -12,6 +12,9 @@ int main() {
     int total = 0;
     int opcion;
 
+    // Inicializar recursos y tiempo disponibles al inicio
+    inicializarRecursos();
+
     do {
         printf("\nMenu:\n");
         printf("1. Ingresar producto\n");
@@ -20,7 +23,7 @@ int main() {
         printf("4. Eliminar producto\n");
         printf("5. Calcular produccion\n");
         printf("0. Salir\n");
-        opcion = leerEnteroPositivo("Opcion: ");
+        opcion = leerEnteroPositivo("Ingresa una opcion");
 
         switch (opcion) {
             case 1:
